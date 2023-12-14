@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import Todo from './components/todo';
+import Todo from './components/Todo';
 
 function App() {
   return (

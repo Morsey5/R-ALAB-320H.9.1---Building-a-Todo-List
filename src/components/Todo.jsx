@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import produce from 'immer';
+import {produce} from 'immer';
 
 const todoReducer = (state, action) => {
   switch (action.type) {
