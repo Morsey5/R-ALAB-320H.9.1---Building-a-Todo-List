@@ -11,10 +11,6 @@ const todoReducer = (state, action) => {
       return produce(state, (draft) => {
         draft.todos.splice(action.payload, 1);
       });
-    case 'TOGGLE_DARK_MODE':
-      return produce(state, (draft) => {
-        draft.darkMode = !draft.darkMode;
-      });
     case 'SET_NEW_TODO':
       return produce(state, (draft) => {
         draft.newTodo = action.payload;
@@ -28,7 +24,6 @@ const Todo = () => {
   const [state, dispatch] = useReducer(todoReducer, {
     todos: [],
     newTodo: '',
-    darkMode: false,
   });
 
   const addTodo = () => {
@@ -42,19 +37,8 @@ const Todo = () => {
     dispatch({ type: 'REMOVE_TODO', payload: index });
   };
 
-  const toggleDarkMode = () => {
-    dispatch({ type: 'TOGGLE_DARK_MODE' });
-  };
-
   return (
-    <div
-      style={{
-        background: state.darkMode ? '#333' : '#fff',
-        color: state.darkMode ? '#fff' : '#333',
-        padding: '20px',
-        borderRadius: '5px',
-      }}
-    >
+    <div style={{ padding: '20px', borderRadius: '5px' }}>
       <h1>Todo List</h1>
       <div>
         <input
@@ -74,11 +58,6 @@ const Todo = () => {
           </li>
         ))}
       </ul>
-      <div>
-        <button onClick={toggleDarkMode}>
-          {state.darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-        </button>
-      </div>
     </div>
   );
 };
